@@ -3,6 +3,7 @@
 # import my_functions as mf
 
 from IPython.display import clear_output, Javascript
+from google.colab import drive
 import gc
 
 def help():
@@ -18,6 +19,9 @@ def clear(wait=False):
     
 def memfree():
     gc.collect()
+    
+def mount():
+    drive.mount('/content/drive')
 
 def set_frame(max_height=450):
     display(Javascript(f'''
