@@ -12,6 +12,7 @@ import json
 import time
 from functools import wraps
 import gc
+import os
 
 
 def help():
@@ -99,6 +100,44 @@ def display_images(path_in, path_out, size=(12, 7)):
     axes[1].set_title("After")
     plt.show()
     
+
+def display_multi_images(image_paths, size=(20, 7), rows=None, grid='off'):
+    if not rows:
+        rows = min(2, len(image_paths))
+    
+    cols = -(-len(image_paths) // rows)  # ceil division: отрицательное деление с округлением вверх
+    fig, axes = plt.subplots(rows, cols, figsize=size)
+
+    for i, img_path in enumerate(image_paths):
+        img = mpimg.imread(img_path)
+        row, col = divmod(i, cols)
+        if rows > 1:
+            ax = axes[row, col]
+        else:
+            ax = axes[col]
+
+        ax.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+        # ax.set_title(f"Image {i + 1}")
+        # Получение базового имени файла (без пути к каталогу)
+        base_name = os.path.basename(img_path)
+        # Разделение имени файла на имя и расширение
+        file_name, _ = os.path.splitext(base_name)
+        # Теперь вы можете использовать переменную file_name в качестве названия графика
+        ax.set_title(file_name)
+
+        ax.axis(grid)
+
+    # Прячем оси для неиспользуемых ячеек, если количество изображений меньше rows * cols
+    for i in range(len(image_paths), rows * cols):
+        row, col = divmod(i, cols)
+        if rows > 1:
+            ax = axes[row, col]
+        else:
+            ax = axes[col]
+        ax.axis("off")
+
+    plt.show()    
+
 
 # вызов функции help() при импорте модуля
 # help()
