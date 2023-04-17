@@ -26,6 +26,7 @@ def help():
   print('mf.send_message(message, "HTML")')
   print('@mf.timer_decorator')
   print('mf.display_images(img1, img2, (12, 7))')
+  print("mf.display_multi_images(image_paths, size=(20, 7), rows=None, grid='off')")
 
   
 def clear(wait=False):
