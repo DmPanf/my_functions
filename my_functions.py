@@ -43,7 +43,7 @@ def set_font(font_size=16):
     '''))
 
 
-def send_message(message, parse_mode='Markdown', chat_id=my_id, token=token, file='/content/drive/MyDrive/zTest/env.json'):
+def send_message(message, parse_mode='Markdown', chat_id=None, token=None, file='/content/drive/MyDrive/zTest/env.json'):
     """
     Пример использования:
     message = f'Отправка сообщения из Colab: <b>[{my_id}]</b>'
