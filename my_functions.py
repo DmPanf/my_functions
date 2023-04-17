@@ -10,6 +10,7 @@ def help():
   print('\n💠 Основные функции библиотеки:')
   print('mf.help()')
   print('mf.clear(wait=False)')
+  print('mf.mount()')
   print('mf.memfree()')
   print('mf.set_frame(450)')
   print('mf.set_font(18)')
