@@ -88,7 +88,7 @@ def timer_decorator(func):
     return wrapper
 
 
-  def display_images(before, after, size=(12, 7)):
+def display_images(before, after, size=(12, 7)):
     fig, axes = plt.subplots(1, 2, figsize=size)
     axes[0].imshow(cv2.cvtColor(before, cv2.COLOR_BGR2RGB))
     axes[0].set_title("Before")
