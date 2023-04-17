@@ -4,6 +4,8 @@
 
 from IPython.display import clear_output, Javascript
 from google.colab import drive
+import requests
+import json
 import gc
 
 def help():
@@ -14,6 +16,7 @@ def help():
   print('mf.memfree()')
   print('mf.set_frame(450)')
   print('mf.set_font(18)')
+  print('mf.send_message(message, "HTML")')
 
 def clear(wait=False):
     clear_output(wait=wait)
@@ -38,3 +41,22 @@ def set_font(font_size=16):
         }}
       }}
     '''))
+
+
+def send_message(message, parse_mode='Markdown', chat_id=my_id, token=token, file='/content/drive/MyDrive/zTest/env.json'):
+    """
+    Пример использования:
+    message = f'Отправка сообщения из Colab: <b>[{my_id}]</b>'
+    response = send_message(message, 'HTML') 
+    print(response)
+    """
+    if chat_id is None or token is None:
+        with open(file) as f:
+            data = json.load(f)
+        token, my_id = data.values()
+      
+    # print('\n', message)
+    url = f'https://api.telegram.org/bot{token}/sendMessage'
+    data = {'chat_id': chat_id, 'text': message, 'parse_mode': parse_mode}
+    response = requests.post(url, json=data)
+    return json.loads(response.text)
