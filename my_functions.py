@@ -89,9 +89,9 @@ def timer_decorator(func):
     return wrapper
 
 
-def display_images(path1, path1, size=(12, 7)):
-    before = mpimg.imread(path1)
-    after = mpimg.imread(path2)
+def display_images(path_in, path_out, size=(12, 7)):
+    before = mpimg.imread(path_in)
+    after = mpimg.imread(path_out)
     fig, axes = plt.subplots(1, 2, figsize=size)
     axes[0].imshow(cv2.cvtColor(before, cv2.COLOR_BGR2RGB))
     axes[0].set_title("Before")
