@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "my_functions"
+version = "0.1.0"
+description = "A collection of useful functions for Google Colab Projects"
+authors = [
+    {name = "Dmitry", email = "7292337@gmail.com"}
+]
+
+[project.urls]
+Source = "https://github.com/dnp34/my_functions"
