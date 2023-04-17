@@ -27,6 +27,7 @@ def help():
   print('@mf.timer_decorator')
   print('mf.display_images(img1, img2, (12, 7))')
   print("mf.display_multi_images(image_paths, size=(20, 7), rows=None, grid='off')")
+  print("image_paths = [os.path.join(path, img) for img in os.listdir(path) if img.lower().endswith(('.png', '.jpg', '.jpeg'))]")
 
   
 def clear(wait=False):
@@ -141,4 +142,4 @@ def display_multi_images(image_paths, size=(20, 7), rows=None, grid='off'):
 
 
 # вызов функции help() при импорте модуля
-# help()
+help()
