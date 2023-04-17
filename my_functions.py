@@ -6,6 +6,8 @@ from IPython.display import clear_output, Javascript
 from google.colab import drive
 import requests
 import json
+import time
+from functools import wraps
 import gc
 
 def help():
@@ -17,6 +19,7 @@ def help():
   print('mf.set_frame(450)')
   print('mf.set_font(18)')
   print('mf.send_message(message, "HTML")')
+  print('@mf.timer_decorator')
 
 def clear(wait=False):
     clear_output(wait=wait)
@@ -61,6 +64,21 @@ def send_message(message, parse_mode='Markdown', chat_id=None, token=None, file=
     response = requests.post(url, json=data)
     return json.loads(response.text)
 
-  
+
+def timer_decorator(func):
+    """
+    Использование: @timer_decorator
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        return result, round(elapsed_time, 3)
+    return wrapper
+
+
+
 # вызов функции help() при импорте модуля
 # help()
