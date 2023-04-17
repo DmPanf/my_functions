@@ -53,7 +53,7 @@ def send_message(message, parse_mode='Markdown', chat_id=None, token=None, file=
     if chat_id is None or token is None:
         with open(file) as f:
             data = json.load(f)
-        token, my_id = data.values()
+        token, chat_id = data.values()
       
     # print('\n', message)
     url = f'https://api.telegram.org/bot{token}/sendMessage'
