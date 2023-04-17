@@ -4,11 +4,14 @@
 
 from IPython.display import clear_output, Javascript
 from google.colab import drive
+import matplotlib.pyplot as plt
+import cv2
 import requests
 import json
 import time
 from functools import wraps
 import gc
+
 
 def help():
   print('\n💠 Основные функции библиотеки:')
@@ -20,21 +23,27 @@ def help():
   print('mf.set_font(18)')
   print('mf.send_message(message, "HTML")')
   print('@mf.timer_decorator')
+  print('mf.display_images(img1, img2, (12, 7))')
 
+  
 def clear(wait=False):
     clear_output(wait=wait)
+    
     
 def memfree():
     gc.collect()
     
+    
 def mount():
     drive.mount('/content/drive')
 
+    
 def set_frame(max_height=450):
     display(Javascript(f'''
     google.colab.output.setIframeHeight(0, true, {{maxHeight: {max_height}}})
     '''))
 
+    
 def set_font(font_size=16):
     display(Javascript(f'''
     for (rule of document.styleSheets[0].cssRules){{
@@ -79,6 +88,14 @@ def timer_decorator(func):
     return wrapper
 
 
+  def display_images(before, after, size=(12, 7)):
+    fig, axes = plt.subplots(1, 2, figsize=size)
+    axes[0].imshow(cv2.cvtColor(before, cv2.COLOR_BGR2RGB))
+    axes[0].set_title("Before")
+    axes[1].imshow(cv2.cvtColor(after, cv2.COLOR_BGR2RGB))
+    axes[1].set_title("After")
+    plt.show()
+    
 
 # вызов функции help() при импорте модуля
 # help()
