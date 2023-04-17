@@ -7,7 +7,7 @@ from google.colab import drive
 import gc
 
 def help():
-  print('\nОсновные функции библиотеки:\n')
+  print('\n💠 Основные функции библиотеки:')
   print('mf.help()')
   print('mf.clear(wait=False)')
   print('mf.memfree()')
