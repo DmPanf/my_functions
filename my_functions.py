@@ -5,6 +5,7 @@
 from IPython.display import clear_output, Javascript
 from google.colab import drive
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 import cv2
 import requests
 import json
@@ -88,7 +89,9 @@ def timer_decorator(func):
     return wrapper
 
 
-def display_images(before, after, size=(12, 7)):
+def display_images(path1, path1, size=(12, 7)):
+    before = mpimg.imread(path1)
+    after = mpimg.imread(path2)
     fig, axes = plt.subplots(1, 2, figsize=size)
     axes[0].imshow(cv2.cvtColor(before, cv2.COLOR_BGR2RGB))
     axes[0].set_title("Before")
