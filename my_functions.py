@@ -60,3 +60,7 @@ def send_message(message, parse_mode='Markdown', chat_id=None, token=None, file=
     data = {'chat_id': chat_id, 'text': message, 'parse_mode': parse_mode}
     response = requests.post(url, json=data)
     return json.loads(response.text)
+
+  
+# вызов функции help() при импорте модуля
+# help()
