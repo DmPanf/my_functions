@@ -60,10 +60,10 @@ def set_font(font_size=16):
     '''))
 
 # функция для перевода 1 доллара в рубли
-def usd_to_rub(rubs=1):
+def usd_to_rub(num=1):
     data = requests.get('https://www.cbr-xml-daily.ru/daily_json.js').json()
     rate = data['Valute']['USD']['Value']
-    return round(rubs*rate, 2)
+    return round(num * rate, 2)
   
 
 def send_message(message, parse_mode='Markdown', chat_id=None, token=None, file='/content/drive/MyDrive/zTest/env.json'):
