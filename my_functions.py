@@ -23,6 +23,7 @@ def help():
   print('mf.memfree()')
   print('mf.set_frame(450)')
   print('mf.set_font(18)')
+  print('mf.usd_to_rub(1)')
   print('mf.send_message(message, "HTML")')
   print('@mf.timer_decorator')
   print('mf.display_images(img1, img2, (12, 7))')
@@ -58,6 +59,12 @@ def set_font(font_size=16):
       }}
     '''))
 
+# функция для перевода 1 доллара в рубли
+def usd_to_rub(rubs=1):
+    data = requests.get('https://www.cbr-xml-daily.ru/daily_json.js').json()
+    rate = data['Valute']['USD']['Value']
+    return round(rubs*rate, 2)
+  
 
 def send_message(message, parse_mode='Markdown', chat_id=None, token=None, file='/content/drive/MyDrive/zTest/env.json'):
     """
